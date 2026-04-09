@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مدونة صيانة اللابتوب والطابعات والمقايسات الفنية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#0d1117;--bg2:#151b23;--card:#1c2333;--card2:#222b3a;--border:#2d3748;--text:#b8c4d4;--muted:#6e7a8a;--head:#e2e8f0;--acc:#10b981;--acc2:#059669;--accbg:rgba(16,185,129,.06);--accbd:rgba(16,185,129,.18);--ok:#22c55e;--err:#ef4444;--warn:#eab308;--info:#38bdf8;--r:10px;--sh:0 2px 16px rgba(0,0,0,.3)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.9;min-height:100vh}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.rbar{position:fixed;top:0;left:0;height:3px;background:var(--acc);z-index:999;transition:width .15s;width:0}
+.hdr{position:sticky;top:3px;z-index:100;background:rgba(13,17,23,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;gap:16px}
+.hlogo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.hlogo-i{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--acc),#047857);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
+.hlogo-t{font-weight:800;font-size:14px;color:var(--head)}
+.hnav{display:flex;align-items:center;gap:4px;margin-right:auto}
+.hnav a{padding:6px 14px;border-radius:6px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:.2s;text-decoration:none;border:none;background:none;font-family:inherit}
+.hnav a:hover,.hnav a.act{color:var(--acc);background:var(--accbg)}
+.hmob{display:none;background:none;border:none;color:var(--text);font-size:20px;cursor:pointer}
+.hero{padding:60px 24px 40px;text-align:center;max-width:800px;margin:0 auto}
+.hero h1{font-size:32px;font-weight:900;color:var(--head);line-height:1.4;margin-bottom:12px}
+.hero h1 span{color:var(--acc)}
+.hero p{font-size:14px;color:var(--muted);max-width:600px;margin:0 auto 20px}
+.hero-stats{display:flex;justify-content:center;gap:32px;margin-top:24px}
+.hero-stat{text-align:center}.hero-stat .n{font-size:24px;font-weight:800;color:var(--acc)}.hero-stat .l{font-size:11px;color:var(--muted)}
+.cats{padding:0 24px 20px;max-width:1200px;margin:0 auto}
+.cats-h{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:12px;padding-right:4px}
+.cats-row{display:flex;gap:8px;flex-wrap:wrap}
+.cat-btn{padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:.2s;font-family:inherit}
+.cat-btn:hover,.cat-btn.act{border-color:var(--accbd);color:var(--acc);background:var(--accbg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;padding:0 24px 40px;max-width:1200px;margin:0 auto}
+.acard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.25s}
+.acard:hover{border-color:var(--accbd);transform:translateY(-3px);box-shadow:var(--sh)}
+.acard-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;overflow:hidden}
+.acard-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--card))}
+.acard-body{padding:16px 18px 18px}
+.acard-cat{font-size:10px;font-weight:700;color:var(--acc);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.acard-title{font-size:15px;font-weight:700;color:var(--head);line-height:1.5;margin-bottom:6px}
+.acard-excerpt{font-size:12px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.acard-meta{display:flex;align-items:center;gap:12px;margin-top:10px;font-size:11px;color:var(--muted)}
+.acard-meta i{margin-left:4px}
+.art-wrap{max-width:860px;margin:0 auto;padding:32px 24px 60px}
+.art-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer;margin-bottom:20px;transition:.2s;border:none;background:none;font-family:inherit}
+.art-back:hover{color:var(--acc)}
+.art-cat{font-size:11px;font-weight:700;color:var(--acc);margin-bottom:8px}
+.art-title{font-size:26px;font-weight:900;color:var(--head);line-height:1.45;margin-bottom:12px}
+.art-meta{display:flex;align-items:center;gap:16px;font-size:12px;color:var(--muted);margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.art-meta i{margin-left:4px}
+.art-body{font-size:13.5px;line-height:2}
+.art-body p{margin-bottom:10px}
+.art-body h3{font-size:16px;font-weight:700;color:var(--head);margin:22px 0 10px;padding-right:12px;border-right:3px solid var(--acc)}
+.art-body h4{font-size:14px;font-weight:600;color:var(--head);margin:14px 0 6px}
+.art-body ul{list-style:none;padding:0;margin:8px 0}
+.art-body ul li{position:relative;padding:3px 20px 3px 0;font-size:13px}
+.art-body ul li::before{content:'';position:absolute;right:0;top:13px;width:5px;height:5px;border-radius:50%;background:var(--acc)}
+.art-body ol{padding-right:20px;margin:8px 0}
+.art-body ol li{font-size:13px;padding:2px 0}
+.art-body ol li::marker{color:var(--acc);font-weight:700}
+.ib{border-radius:8px;padding:14px 16px;margin:14px 0;font-size:12.5px;line-height:1.9}
+.ib.t{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);color:var(--acc)}
+.ib.w{background:rgba(234,179,8,.06);border:1px solid rgba(234,179,8,.15);color:var(--warn)}
+.ib.d{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);color:var(--err)}
+.ib.i{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.15);color:var(--info)}
+.ib .bt{font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.fig{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin:16px 0;overflow:hidden}
+.fig svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.fig-cap{text-align:center;font-size:11px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.fig-cap strong{color:var(--acc)}
+.stb{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
+.stb thead th{background:var(--card2);color:var(--head);font-weight:700;padding:8px 12px;text-align:right;border-bottom:2px solid var(--accbd)}
+.stb tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.stb tbody tr:hover{background:rgba(16,185,129,.02)}
+.art-nav{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:24px;border-top:1px solid var(--border)}
+.art-nav-btn{flex:1;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:.2s;font-family:inherit;text-align:right}
+.art-nav-btn:hover{border-color:var(--accbd);background:var(--card2)}
+.art-nav-btn .lbl{font-size:10px;color:var(--muted);margin-bottom:2px}
+.art-nav-btn .val{font-size:12px;color:var(--head);font-weight:600}
+.quiz-wrap{max-width:720px;margin:0 auto;padding:32px 24px 60px}
+.quiz-header{text-align:center;margin-bottom:32px}
+.quiz-header h2{font-size:22px;font-weight:800;color:var(--head);margin-bottom:6px}
+.quiz-header p{font-size:13px;color:var(--muted)}
+.quiz-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:24px}
+.qcat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;cursor:pointer;transition:.25s;text-align:center}
+.qcat-card:hover{border-color:var(--accbd);transform:translateY(-2px)}
+.qcat-card .qi{width:40px;height:40px;border-radius:10px;background:var(--accbg);display:inline-flex;align-items:center;justify-content:center;color:var(--acc);font-size:16px;margin-bottom:8px}
+.qcat-card .qt{font-size:13px;font-weight:700;color:var(--head);margin-bottom:4px}
+.qcat-card .qn{font-size:11px;color:var(--muted)}
+.qcat-card.done{border-color:var(--ok)}.qcat-card.done .qi{background:rgba(34,197,94,.1);color:var(--ok)}
+.qall-btn{display:block;width:100%;max-width:400px;margin:0 auto 32px;padding:12px;background:linear-gradient(135deg,var(--acc),#047857);color:#fff;font-size:14px;font-weight:700;border:none;border-radius:8px;cursor:pointer;transition:.25s;font-family:inherit}
+.qall-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(16,185,129,.3)}
+.qov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);z-index:200;align-items:center;justify-content:center;padding:16px}
+.qov.show{display:flex}
+.qm{background:var(--bg2);border:1px solid var(--border);border-radius:14px;width:100%;max-width:620px;max-height:88vh;overflow-y:auto;box-shadow:0 16px 50px rgba(0,0,0,.5);animation:qi .25s ease}
+@keyframes qi{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.qh{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.qh h3{font-size:15px;color:var(--head)}
+.qx{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer}.qx:hover{color:var(--err)}
+.qbd{padding:20px}
+.qpb{width:100%;height:5px;background:var(--border);border-radius:3px;margin-bottom:18px;overflow:hidden}
+.qpb span{display:block;height:100%;background:var(--acc);border-radius:3px;transition:width .4s}
+.qn2{font-size:11px;color:var(--acc);font-weight:700;margin-bottom:4px}
+.qt2{font-size:14px;font-weight:600;color:var(--head);margin-bottom:16px;line-height:1.7}
+.qos{display:flex;flex-direction:column;gap:8px}
+.qo{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:8px;background:var(--card);border:1px solid var(--border);cursor:pointer;transition:.2s;font-size:12.5px}
+.qo:hover{border-color:var(--accbd);background:var(--card2)}
+.qo.sel{border-color:var(--acc);background:var(--accbg);color:var(--acc)}
+.qo.ok{border-color:var(--ok);background:rgba(34,197,94,.07);color:var(--ok)}
+.qo.no{border-color:var(--err);background:rgba(239,68,68,.07);color:var(--err)}
+.qo .oc{width:26px;height:26px;border-radius:50%;flex-shrink:0;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--muted);transition:.2s}
+.qo.sel .oc{border-color:var(--acc);color:var(--acc)}.qo.ok .oc{border-color:var(--ok);background:var(--ok);color:#fff}.qo.no .oc{border-color:var(--err);background:var(--err);color:#fff}
+.qfb{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:12px;display:none;line-height:1.8}
+.qfb.sh{display:block}.qfb.cf{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.16);color:var(--ok)}.qfb.wf{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.16);color:var(--err)}
+.qnb{display:none;margin-top:14px;padding:9px 22px;background:var(--acc);color:#fff;border:none;border-radius:7px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:13px;font-weight:600;transition:.2s}
+.qnb:hover{background:var(--acc2)}
+.qr{text-align:center;padding:28px 16px}
+.qr .ri{width:68px;height:68px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:12px}
+.qr .ri.p{background:rgba(34,197,94,.1);color:var(--ok)}.qr .ri.f{background:rgba(239,68,68,.1);color:var(--err)}
+.qr h3{font-size:20px;color:var(--head);margin-bottom:6px}
+.qr .sc{font-size:14px;color:var(--muted);margin-bottom:20px}.qr .sc span{color:var(--acc);font-weight:700}
+.qrb{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.qrb button{padding:9px 20px;border-radius:7px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:12px;font-weight:600;border:none;transition:.2s}
+.br{background:var(--acc);color:#fff}.br:hover{background:var(--acc2)}
+.bc{background:var(--card);color:var(--text);border:1px solid var(--border)!important}.bc:hover{background:var(--card2)}
+.ft{background:var(--bg2);border-top:1px solid var(--border);padding:20px 24px;text-align:center;font-size:11px;color:var(--muted)}
+.tc{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.tst{background:var(--card);border:1px solid var(--border);padding:8px 18px;border-radius:8px;font-size:12px;box-shadow:var(--sh);animation:tin .3s ease,tout .3s ease 2.3s forwards;pointer-events:auto}
+.tst.s{border-color:rgba(34,197,94,.3);color:var(--ok)}.tst.e{border-color:rgba(239,68,68,.3);color:var(--err)}
+@keyframes tin{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes tout{to{opacity:0;transform:translateY(-8px)}}
+.fade{animation:fd .3s ease}@keyframes fd{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.cc{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.cc h5{font-size:12px;font-weight:700;color:var(--acc);margin-bottom:6px}.cc li{font-size:11.5px;padding:2px 0}
+@media(max-width:768px){.hnav{display:none;position:absolute;top:56px;right:0;width:100%;background:var(--bg2);border-bottom:1px solid var(--border);flex-direction:column;padding:8px}.hnav.show{display:flex}.hmob{display:block}.grid{grid-template-columns:1fr}.hero h1{font-size:24px}.art-title{font-size:20px}.cg{grid-template-columns:1fr}.quiz-cats{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.hdr{padding:0 14px}.hero{padding:40px 16px 24px}.grid{padding:0 14px 30px}.art-wrap{padding:24px 14px 40px}.stb{font-size:10.5px}.stb thead th,.stb tbody td{padding:6px}}
+</style>
+</head>
+<body>
+<div class="rbar" id="rbar"></div>
+<header class="hdr">
+<a class="hlogo" onclick="go('home')"><div class="hlogo-i"><i class="fas fa-microchip"></i></div><div class="hlogo-t">صيانة التقنية</div></a>
+<nav class="hnav" id="hnav">
+<a onclick="go('home')" class="act" id="nav-home"><i class="fas fa-home"></i> الرئيسية</a>
+<a onclick="go('quiz')" id="nav-quiz"><i class="fas fa-question-circle"></i> الاختبارات</a>
+</nav>
+<button class="hmob" onclick="document.getElementById('hnav').classList.toggle('show')"><i class="fas fa-bars"></i></button>
+</header>
+<main id="app"></main>
+<footer class="ft">إعداد: شركة يات لحلول التعليم (YAT) - مصلحة الكفاية الإنتاجية والتدريب المهني - الصف الثالث</footer>
+<div class="qov" id="qov"><div class="qm"><div class="qh"><h3 id="qTi"></h3><button class="qx" onclick="clQ()"><i class="fas fa-times"></i></button></div><div class="qbd" id="qBd"></div></div></div>
+<div class="tc" id="tc"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+//  رسوم SVG تقنية مضمّنة بدلاً من صور PDF
+// ═══════════════════════════════════════════════
+const SVG={
+// شكل 1: الطابعة النقطية
+dotmatrix:`<svg viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="30" width="300" height="220" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<rect x="30" y="40" width="280" height="60" rx="5" fill="#0f172a" stroke="#334155"/>
+<rect x="40" y="50" width="260" height="40" rx="3" fill="#1a2332"/>
+<text x="170" y="75" text-anchor="middle" fill="#64748b" font-size="11" font-family="Cairo">مخرج الورق</text>
+<rect x="320" y="80" width="180" height="170" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<rect x="340" y="95" width="140" height="30" rx="4" fill="#0f172a" stroke="#334155"/>
+<circle cx="355" cy="110" r="4" fill="#10b981"/><circle cx="370" cy="110" r="4" fill="#eab308"/><circle cx="385" cy="110" r="4" fill="#ef4444"/>
+<rect x="340" y="135" width="140" height="100" rx="4" fill="#0f172a" stroke="#334155"/>
+<text x="410" y="190" text-anchor="middle" fill="#64748b" font-size="10" font-family="Cairo">حامل الورق</text>
+<rect x="60" y="120" width="220" height="80" rx="5" fill="#0f172a" stroke="#334155"/>
+<line x1="80" y1="140" x2="80" y2="180" stroke="#475569" stroke-width="1"/>
+<line x1="110" y1="140" x2="110" y2="180" stroke="#475569" stroke-width="1"/>
+<line x1="140" y1="140" x2="140" y2="180" stroke="#475569" stroke-width="1"/>
+<line x1="170" y1="140" x2="170" y2="180" stroke="#475569" stroke-width="1"/>
+<line x1="200" y1="140" x2="200" y2="180" stroke="#475569" stroke-width="1"/>
+<line x1="230" y1="140" x2="230" y2="180" stroke="#475569" stroke-width="1"/>
+<line x1="260" y1="140" x2="260" y2="180" stroke="#475569" stroke-width="1"/>
+<text x="170" y="168" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700" font-family="Cairo">رأس الطباعة</text>
+<rect x="40" y="210" width="260" height="20" rx="3" fill="#334155"/>
+<text x="170" y="224" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Cairo">أسطوانة الطباعة (Platen)</text>
+<line x1="50" y1="110" x2="320" y2="110" stroke="#eab308" stroke-width="1" stroke-dasharray="4"/>
+<text x="185" y="105" text-anchor="middle" fill="#eab308" font-size="9" font-family="Cairo">شريط الحبر (Ribbon)</text>
+</svg>`,
+
+// شكل 2: رأس الطباعة النقطية (الدبابيس)
+printhead:`<svg viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="20" width="460" height="200" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<text x="260" y="55" text-anchor="middle" fill="#94a3b8" font-size="13" font-weight="700" font-family="Cairo">رأس الطباعة النقطية - مصفوفة الدبابيس</text>
+<rect x="60" y="75" width="120" height="120" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="120" y="95" text-anchor="middle" fill="#64748b" font-size="10" font-family="Cairo">9 دبابيس</text>
+ ${Array.from({length:9},(_,i)=>`<circle cx="${82+i*9}" cy="${110+Math.floor(i/3)*20}" r="4" fill="#10b981"/>`).join('')}
+<rect x="200" y="75" width="140" height="120" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="270" y="95" text-anchor="middle" fill="#64748b" font-size="10" font-family="Cairo">18 دبوس</text>
+ ${Array.from({length:18},(_,i)=>`<circle cx="${220+i*6.5}" cy="${108+Math.floor(i/6)*20}" r="3" fill="#38bdf8"/>`).join('')}
+<rect x="360" y="75" width="110" height="120" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="415" y="95" text-anchor="middle" fill="#64748b" font-size="10" font-family="Cairo">24 دبوس</text>
+ ${Array.from({length:24},(_,i)=>`<circle cx="${378+i*4.2}" cy="${108+Math.floor(i/8)*20}" r="2.5" fill="#f59e0b"/>`).join('')}
+<text x="260" y="220" text-anchor="middle" fill="#10b981" font-size="11" font-family="Cairo">كلما زاد عدد الدبابيس ← زادت دقة الطباعة</text>
+</svg>`,
+
+// شكل 5: خزان الحبر (Cartridge)
+cartridge:`<svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="20" width="460" height="220" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<rect x="80" y="50" width="160" height="150" rx="12" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+<rect x="100" y="70" width="120" height="80" rx="4" fill="#1a1a2e" stroke="#334155"/>
+<text x="160" y="115" text-anchor="middle" fill="#64748b" font-size="10" font-family="Cairo">خزان الحبر</text>
+<rect x="110" y="160" width="100" height="25" rx="4" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+ ${Array.from({length:8},(_,i)=>`<circle cx="${125+i*12}" cy="172" r="3" fill="#10b981"/>`).join('')}
+<text x="160" y="200" text-anchor="middle" fill="#10b981" font-size="10" font-family="Cairo">رأس الطباعة (مدمج)</text>
+<text x="160" y="230" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700" font-family="Cairo">علبة الحبر Ink Cartridge</text>
+<line x1="260" y1="80" x2="260" y2="180" stroke="#334155" stroke-width="1" stroke-dasharray="4"/>
+<text x="380" y="100" text-anchor="middle" fill="#eab308" font-size="11" font-weight="700" font-family="Cairo">ملاحظة مهمة</text>
+<text x="380" y="125" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Cairo">في أغلب الطابعات النافثة</text>
+<text x="380" y="145" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Cairo">رأس الطباعة مدمج مع</text>
+<text x="380" y="165" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Cairo">خزان الحبر في علبة واحدة</text>
+<text x="380" y="190" text-anchor="middle" fill="#10b981" font-size="10" font-weight="600" font-family="Cairo">استبدال العلبة = استبدال الرأس</text>
+</svg>`,
+
+// أشكال 10-13: مكونات الطابعة الليزرية
+lasercomp:`<svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="580" height="400" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<text x="300" y="38" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="800" font-family="Cairo">المكونات الرئيسية للطابعة الليزرية</text>
+<rect x="30" y="55" width="250" height="340" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+<text x="155" y="75" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700" font-family="Cairo">المكونات الداخلية</text>
+ ${[{y:90,l:'الأسطوانة الحساسة (Drum)',c:'#0ea5e9'},{y:120,l:'مصباح المحو (Erase Lamp)',c:'#8b5cf6'},{y:150,l:'الهالة الرئيسية (Primary Corona)',c:'#f59e0b'},{y:180,l:'الشعاع الليزري (Laser Beam)',c:'#ef4444'},{y:210,l:'الحبر (Toner)',c:'#10b981'},{y:240,l:'هالة النقل (Transfer Corona)',c:'#f59e0b'},{y:270,l:'آلية الدمج (Fuser)',c:'#ec4899'},{y:300,l:'وحدات التغذية (Power Supply)',c:'#f97316'},{y:330,l:'اللوحة الرئيسية (Main Board)',c:'#06b6d4'},{y:360,l:'مرشح الأوزون + الحساسات',c:'#64748b'}].map(i=>`<circle cx="45" cy="${i.y}" r="4" fill="${i.c}"/><text x="55" y="${i.y+4}" fill="#b8c4d4" font-size="10" font-family="Cairo">${i.l}</text>`).join('')}
+<rect x="300" y="55" width="280" height="170" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+<text x="440" y="75" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700" font-family="Cairo">مراحل الطباعة الست</text>
+ ${[{y:95,l:'1. تنظيف الأسطوانة',c:'#8b5cf6'},{y:120,l:'2. شحن الأسطوانة (سالب)',c:'#f59e0b'},{y:145,l:'3. كتابة الصورة بالليزر',c:'#ef4444'},{y:170,l:'4. نقل الصورة للورقة',c:'#0ea5e9'},{y:195,l:'5. دمج الصورة (حرارة+ضغط)',c:'#ec4899'},{y:218,l:'6. إزالة الشحنة الساكنة',c:'#64748b'}].map(i=>`<rect x="315" y="${i.y-8}" width="250" height="20" rx="4" fill="${i.c}15" stroke="${i.c}40"/><text x="440" y="${i.y+5}" text-anchor="middle" fill="${i.c}" font-size="10" font-weight="600" font-family="Cairo">${i.l}</text>`).join('')}
+<rect x="300" y="240" width="280" height="155" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+<text x="440" y="260" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700" font-family="Cairo">مسار الورق</text>
+<line x1="320" y1="290" x2="560" y2="290" stroke="#334155" stroke-width="1.5" stroke-dasharray="6"/>
+<rect x="315" y="278" width="40" height="24" rx="3" fill="#334155"/><text x="335" y="294" text-anchor="middle" fill="#b8c4d4" font-size="7" font-family="Cairo">درج</text>
+<text x="385" y="280" text-anchor="middle" fill="#64748b" font-size="8" font-family="Cairo">بكرات السحب</text>
+<rect x="365" y="283" width="40" height="14" rx="7" fill="#334155"/>
+<rect x="430" y="275" width="60" height="30" rx="4" fill="#ef444420" stroke="#ef444440"/><text x="460" y="294" text-anchor="middle" fill="#ef4444" font-size="8" font-family="Cairo">Drum</text>
+<rect x="505" y="275" width="50" height="30" rx="4" fill="#ec489920" stroke="#ec489940"/><text x="530" y="294" text-anchor="middle" fill="#ec4899" font-size="8" font-family="Cairo">Fuser</text>
+<line x1="315" y1="320" x2="560" y2="320" stroke="#10b981" stroke-width="1.5" marker-end="url(#ar)"/>
+<text x="440" y="340" text-anchor="middle" fill="#10b981" font-size="9" font-family="Cairo">اتجاه حركة الورق ←</text>
+<text x="440" y="375" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Cairo">درج → سحب → طباعة → دمج → إخراج</text>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981"/></marker></defs>
+</svg>`,
+
+// شكل 16-17: الموصلات (DB-25 و USB)
+connectors:`<svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="490" height="230" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<text x="260" y="38" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="800" font-family="Cairo">طرق توصيل الطابعات بالحاسوب</text>
+<rect x="30" y="55" width="210" height="170" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="135" y="75" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700" font-family="Cairo">ناقل DB-25 (متوازي)</text>
+<rect x="60" y="90" width="80" height="50" rx="6" fill="#334155" stroke="#64748b"/>
+<rect x="70" y="100" width="60" height="30" rx="3" fill="#1e293b"/>
+ ${Array.from({length:13},(_,i)=>`<rect x="${75+i*4.5}" y="103" width="2" height="8" rx="1" fill="#f59e0b"/>`).join('')}
+ ${Array.from({length:12},(_,i)=>`<rect x="${77+i*4.5}" y="118" width="2" height="8" rx="1" fill="#f59e0b"/>`).join('')}
+<text x="100" y="165" text-anchor="middle" fill="#f59e0b" font-size="9" font-family="Cairo">DB-25M (ذكر)</text>
+<line x1="140" y1="115" x2="190" y2="115" stroke="#64748b" stroke-width="2"/>
+<rect x="190" y="90" width="40" height="50" rx="4" fill="#334155" stroke="#64748b"/>
+<text x="210" y="165" text-anchor="middle" fill="#64748b" font-size="9" font-family="Cairo">كابل</text>
+<text x="135" y="200" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Cairo">يوصل بمؤخرة الحاسوب على اللوحة الأم</text>
+<rect x="260" y="55" width="230" height="170" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="375" y="75" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="700" font-family="Cairo">ناقل USB (تسلسلي)</text>
+<rect x="290" y="90" width="50" height="25" rx="5" fill="#334155" stroke="#10b981"/>
+<rect x="295" y="95" width="40" height="15" rx="3" fill="#1e293b"/>
+<rect x="300" y="99" width="30" height="7" rx="1" fill="#10b981"/>
+<text x="315" y="135" text-anchor="middle" fill="#10b981" font-size="9" font-family="Cairo">USB-A</text>
+<line x1="340" y1="102" x2="390" y2="102" stroke="#64748b" stroke-width="2"/>
+<rect x="390" y="90" width="40" height="25" rx="5" fill="#334155" stroke="#10b981"/>
+<text x="410" y="135" text-anchor="middle" fill="#64748b" font-size="9" font-family="Cairo">كابل</text>
+<rect x="290" y="150" width="70" height="35" rx="6" fill="#334155" stroke="#38bdf8"/>
+<rect x="300" y="158" width="50" height="19" rx="3" fill="#1e293b"/>
+<text x="325" y="205" text-anchor="middle" fill="#38bdf8" font-size="9" font-family="Cairo">USB-B (طابعة)</text>
+<text x="375" y="230" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Cairo">الأحدث والأكثر انتشاراً - يدعم اللاسلكي</text>
+</svg>`,
+
+// شكل 28: أماكن انحشار الورق
+paperjam:`<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="500" height="300" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<text x="260" y="38" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="800" font-family="Cairo">الأماكن المحتملة لانحشار الورق - HP 402 DN</text>
+<rect x="120" y="55" width="280" height="240" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+<text x="260" y="72" text-anchor="middle" fill="#64748b" font-size="10" font-family="Cairo">الطابعة الليزرية (عرض مقطعي)</text>
+ ${[{x:170,y:95,n:'1',l:'حاوية الإخراج',c:'#ef4444'},{x:310,y:130,n:'2',l:'منطقة المصهر',c:'#ef4444'},{x:170,y:165,n:'5',l:'الدرج 1',c:'#f59e0b'},{x:310,y:165,n:'4',l:'الدرج 2',c:'#f59e0b'},{x:170,y:200,n:'3',l:'الدرج 3',c:'#f59e0b'},{x:260,y:235,n:'6',l:'ناحية عبوة الحبر',c:'#8b5cf6'}].map(p=>`<circle cx="${p.x}" cy="${p.y}" r="14" fill="${p.c}30" stroke="${p.c}" stroke-width="2"/><text x="${p.x}" y="${p.y+4}" text-anchor="middle" fill="${p.c}" font-size="11" font-weight="800" font-family="Cairo">${p.n}</text><text x="${p.x}" y="${p.y+22}" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Cairo">${p.l}</text>`).join('')}
+<rect x="140" y="270" width="240" height="16" rx="3" fill="#334155"/>
+<text x="260" y="282" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Cairo">← مسار الورق →</text>
+</svg>`,
+
+// أشكال 47-51: المحمول من جميع الجهات
+laptop:`<svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="580" height="360" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<text x="300" y="35" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="800" font-family="Cairo">الحاسب المحمول - المنافذ الخارجية</text>
+<rect x="25" y="48" width="170" height="160" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="110" y="65" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="700" font-family="Cairo">الجانب الأيمن</text>
+ ${[{y:80,l:'USB 3.0',c:'#10b981'},{y:100,l:'USB-C',c:'#10b981'},{y:120,l:'HDMI',c:'#f59e0b'},{y:140,l:'قفل Kensington',c:'#64748b'},{y:160,l:'فتحة تهوية',c:'#64748b'},{y:180,l:'مؤشر البطارية',c:'#f97316'}].map(p=>`<rect x="35" y="${p.y-6}" width="60" height="14" rx="3" fill="${p.c}15" stroke="${p.c}30"/><text x="40" y="${p.y+4}" fill="${p.c}" font-size="7" font-family="Cairo">${p.l}</text>`).join('')}
+<rect x="205" y="48" width="170" height="160" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="290" y="65" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="700" font-family="Cairo">الجانب الأيسر</text>
+ ${[{y:80,l:'DC-IN (شاحن)',c:'#ef4444'},{y:100,l:'VGA',c:'#f59e0b'},{y:120,l:'RJ-45 (شبكة)',c:'#0ea5e9'},{y:140,l:'USB 2.0',c:'#10b981'},{y:160,l:'مخرج صوت',c:'#8b5cf6'},{y:180,l:'قارئ بطاقات',c:'#64748b'}].map(p=>`<rect x="215" y="${p.y-6}" width="60" height="14" rx="3" fill="${p.c}15" stroke="${p.c}30"/><text x="220" y="${p.y+4}" fill="${p.c}" font-size="7" font-family="Cairo">${p.l}</text>`).join('')}
+<rect x="385" y="48" width="200" height="160" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="485" y="65" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="700" font-family="Cairo">الجهة الخلفية</text>
+ ${[{y:80,l:'USB',c:'#10b981'},{y:100,l:'HDMI',c:'#f59e0b'},{y:120,l:'RJ-45',c:'#0ea5e9'},{y:140,l:'VGA',c:'#f59e0b'},{y:160,l:'DC-IN',c:'#ef4444'},{y:180,l:'فتحة تهوية',c:'#64748b'}].map(p=>`<rect x="395" y="${p.y-6}" width="45" height="14" rx="3" fill="${p.c}15" stroke="${p.c}30"/><text x="400" y="${p.y+4}" fill="${p.c}" font-size="7" font-family="Cairo">${p.l}</text>`).join('')}
+<rect x="25" y="218" width="560" height="140" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="305" y="238" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="700" font-family="Cairo">من الأعلى - لوحة المفاتيح والشاشة</text>
+<rect x="50" y="250" width="310" height="90" rx="6" fill="#1e293b" stroke="#334155"/>
+ ${Array.from({length:13},(_,i)=>Array.from({length:10},(_,j)=>`<rect x="${58+j*30}" y="${258+i*6}" width="26" height="4" rx="1" fill="#334155"/>`).join('')).join('')}
+<rect x="375" y="250" width="190" height="90" rx="6" fill="#0f172a" stroke="#334155"/>
+<text x="470" y="300" text-anchor="middle" fill="#64748b" font-size="9" font-family="Cairo">شاشة LCD مدمجة</text>
+<text x="470" y="320" text-anchor="middle" fill="#64748b" font-size="9" font-family="Cairo">في الغطاء</text>
+</svg>`,
+
+// شكل 44-45: اللوحة الرئيسية ووحدة التغذية
+boards:`<svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="490" height="230" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<rect x="25" y="40" width="225" height="185" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="137" y="60" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="700" font-family="Cairo">اللوحة الرئيسية Main Board</text>
+<rect x="40" y="75" width="60" height="40" rx="4" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
+<text x="70" y="98" text-anchor="middle" fill="#06b6d4" font-size="8" font-family="Cairo">المعالج</text>
+<rect x="110" y="75" width="40" height="20" rx="3" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+<text x="130" y="88" text-anchor="middle" fill="#f59e0b" font-size="7" font-family="Cairo">ROM</text>
+<rect x="110" y="100" width="40" height="20" rx="3" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+<text x="130" y="113" text-anchor="middle" fill="#10b981" font-size="7" font-family="Cairo">RAM</text>
+<rect x="160" y="75" width="80" height="40" rx="4" fill="#0f172a" stroke="#334155"/>
+<text x="200" y="98" text-anchor="middle" fill="#64748b" font-size="7" font-family="Cairo">مقابس RAM إضافية</text>
+<rect x="40" y="125" width="200" height="30" rx="3" fill="#0f172a" stroke="#334155"/>
+<text x="140" y="144" text-anchor="middle" fill="#64748b" font-size="8" font-family="Cairo">دوائر التحكم ومعالجة البيانات</text>
+<rect x="40" y="165" width="30" height="20" rx="2" fill="#334155"/><text x="55" y="178" text-anchor="middle" fill="#94a3b8" font-size="6" font-family="Cairo">USB</text>
+<rect x="80" y="165" width="30" height="20" rx="2" fill="#334155"/><text x="95" y="178" text-anchor="middle" fill="#94a3b8" font-size="6" font-family="Cairo">LPT</text>
+<rect x="120" y="165" width="30" height="20" rx="2" fill="#334155"/><text x="135" y="178" text-anchor="middle" fill="#94a3b8" font-size="6" font-family="Cairo">RJ45</text>
+<text x="137" y="205" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Cairo">إذا لم تكفِ RAM → "فيض الذاكرة"</text>
+<rect x="265" y="40" width="225" height="185" rx="8" fill="#0f172a" stroke="#334155"/>
+<text x="377" y="60" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="700" font-family="Cairo">وحدة التغذية Power Supply</text>
+<rect x="290" y="75" width="80" height="60" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+<text x="330" y="100" text-anchor="middle" fill="#f97316" font-size="9" font-family="Cairo">المحول</text>
+<text x="330" y="125" text-anchor="middle" fill="#64748b" font-size="7" font-family="Cairo">متردد ← مستمر</text>
+<rect x="385" y="75" width="90" height="60" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+<circle cx="410" cy="100" r="6" fill="#ef444420" stroke="#ef444440"/><text x="410" y="103" text-anchor="middle" fill="#ef4444" font-size="7" font-family="Cairo">F</text>
+<text x="430" y="100" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Cairo">الفيوز</text>
+<text x="430" y="118" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Cairo">(حماية)</text>
+<rect x="290" y="150" width="185" height="25" rx="4" fill="#0f172a" stroke="#334155"/>
+<text x="382" y="166" text-anchor="middle" fill="#64748b" font-size="8" font-family="Cairo">دوائر التوحيد والمكثفات</text>
+<rect x="290" y="185" width="185" height="25" rx="4" fill="#0f172a" stroke="#10b981"/>
+<text x="382" y="201" text-anchor="middle" fill="#10b981" font-size="8" font-family="Cairo">مخارج جهد مستمر للوحة الرئيسية</text>
+</svg>`,
+
+// تقنيات ضخ الحبر الثلاث
+inkjet_tech:`<svg viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="500" height="260" rx="10" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+<text x="260" y="38" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="800" font-family="Cairo">التقنيات الثلاث لضخ الحبر في الطابعات النافثة</text>
+<rect x="25" y="50" width="155" height="205" rx="8" fill="#0f172a" stroke="#8b5cf640"/>
+<text x="102" y="70" text-anchor="middle" fill="#8b5cf6" font-size="10" font-weight="700" font-family="Cairo">البيزو الكهربائية</text>
+<text x="102" y="85" text-anchor="middle" fill="#64748b" font-size="8" font-family="Cairo">Piezoelectric</text>
+<rect x="50" y="95" width="105" height="45" rx="5" fill="#1e293b" stroke="#8b5cf630"/>
+ ${Array.from({length:5},(_,i)=>`<rect x="${60+i*20}" y="103" width="8" height="15" rx="2" fill="#8b5cf620" stroke="#8b5cf650"/><rect x="${63+i*20}" y="100" width="4" height="4" rx="1" fill="#8b5cf6"/>`).join('')}
+<text x="102" y="155" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Cairo">كريستال يتمدد بتيار</text>
+<text x="102" y="168" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Cairo">كهربائي → يضغط الحبر</text>
+<text x="102" y="188" text-anchor="middle" fill="#8b5cf6" font-size="8" font-weight="600" font-family="Cairo">Epson</text>
+<text x="102" y="205" text-anchor="middle" fill="#8b5cf6" font-size="8" font-family="Cairo">1440×720 dpi</text>
+<rect x="190" y="50" width="155" height="205" rx="8" fill="#0f172a" stroke="#ef444440"/>
+<text x="267" y="70" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="700" font-family="Cairo">التقنية الحرارية</text>
+<text x="267" y="85" text-anchor="middle" fill="#64748b" font-size="8" font-family="Cairo">Thermal</text>
+<rect x="215" y="95" width="105" height="45" rx="5" fill="#1e293b" stroke="#ef444430"/>
+ ${Array.from({length:5},(_,i)=>`<circle cx="${235+i*20}" cy="112" r="5" fill="#ef444420" stroke="#ef444450"/><circle cx="${235+i*20}" cy="112" r="2" fill="#ef4444"/>`).join('')}
+<text x="267" y="155" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Cairo">تسخين الحبر يشكل</text>
+<text x="267" y="168" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Cairo">فقاعة تتمدد وتخرج</text>
+<text x="267" y="188" text-anchor="middle" fill="#ef4444" font-size="8" font-weight="600" font-family="Cairo">HP, Canon</text>
+<text x="267" y="205" text-anchor="middle" fill="#ef4444" font-size="8" font-family="Cairo">الأكثر انتشاراً</text>
+<rect x="355" y="50" width="145" height="205" rx="8" fill="#0f172a" stroke="#0ea5e940"/>
+<text x="427" y="70" text-anchor="middle" fill="#0ea5e9" font-size="10" font-weight="700" font-family="Cairo">الجريان المستمر</text>
+<text x="427" y="85" text-anchor="middle" fill="#64748b" font-size="8" font-family="Cairo">Continuous Flow</text>
+<rect x="375" y="95" width="105" height="45" rx="5" fill="#1e293b" stroke="#0ea5e930"/>
+<rect x="390" y="105" width="75" height="25" rx="4" fill="#0ea5e915" stroke="#0ea5e930"/>
+<text x="427" y="121" text-anchor="middle" fill="#0ea5e9" font-size="7" font-family="Cairo">حجرة مشحونة</text>
+<text x="427" y="155" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Cairo">حبر يجري باستمرار</text>
+<text x="427" y="168" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Cairo">مشحون→ورق، غير</text>
+<text x="427" y="181" text-anchor="middle" fill="#94a3b8" font-size="7" font-family="Cairo">مشحون→يعود للخزان</text>
+</svg>`
+};
+
+// ═══════════════════════════════════════════════
+//  بنك المقالات
+// ═══════════════════════════════════════════════
+const articles=[
+{id:'a1',cat:'طابعات',icon:'fa-print',clr:'#0ea5e9',title:'مقدمة عن الطابعات وأنواعها',date:'الوحدة 1',read:'8 دقائق',exc:'تعرف على أساسيات اختيار الطابعة المناسبة: دقة الطباعة DPI، سرعة الطباعة PPM، حجم الورق، ودورة الخدمة.',
+body:`<p>تعتبر الطابعات من أهم وحدات الإخراج. اختيار الطابعة المناسبة يتعدى السعر - يجب معرفة احتياجك أولاً.</p><h3>أساسيات اختيار الطابعات</h3><ul><li><strong>دقة الطباعة (DPI):</strong> عدد نقاط الحبر في البوصة المربعة. كلما زادت زادت الدقة والتكلفة.</li><li><strong>سرعة الطباعة (PPM):</strong> عدد الصفحات في الدقيقة. الملونة لها سرعتين.</li><li><strong>حجم الورق:</strong> المنزلية غالباً A4، والدعائية A3 أو أكبر.</li><li><strong>دورة الخدمة:</strong> عدد الصفحات في الشهر.</li></ul>`},
+
+{id:'a2',cat:'طابعات',icon:'fa-th',clr:'#0ea5e9',title:'الطابعات النقطية (Dot Matrix)',date:'الوحدة 1',read:'7 دقائق',exc:'الطابعات الضاربة الوحيدة القادرة على إنتاج أكثر من نسخة في نفس الوقت.',
+body:`<p>تعتبر من نوع <strong style="color:var(--head)">الطابعات الضاربة (Impact)</strong> حيث يضرب رأس الطباعة الورقة فعلياً عبر شريط الحبر.</p><div class="ib t"><div class="bt"><i class="fas fa-lightbulb"></i> لماذا لا تزال مستخدمة؟</div>رغم ضجيجها وبطئها، هي الوحيدة القادرة على إنتاج أكثر من نسخة في نفس الوقت وتكلفة طباعة منخفضة جداً.</div><h3>رأس الطباعة</h3><p>يتألف من 9 أو 18 أو 24 دبوساً. كلما زاد العدد زادت الدقة. شريط الحبر (Ribbon) يمر بين الرأس والورق.</p><div class="fig">${SVG.dotmatrix}<div class="fig-cap"><strong>شكل 1</strong> - الطابعة النقطية (Dot Matrix Printer)</div></div><div class="fig">${SVG.printhead}<div class="fig-cap"><strong>شكل 2</strong> - رأس الطباعة النقطية: مصفوفة الدبابيس (9 / 18 / 24)</div></div>`},
+
+{id:'a3',cat:'طابعات',icon:'fa-tint',clr:'#0ea5e9',title:'الطابعات النافثة للحبر (Inkjet)',date:'الوحدة 1',read:'10 دقائق',exc:'السيطرة على السوق بسبب سهولة التركيب وجودة الصور الملونة. تعرف على التقنيات الثلاث لضخ الحبر.',
+body:`<p>أبسط وأخف من النقطية. سيطرت على السوق بسبب سهولة التركيب وجودة الصور الملونة وقلة الضجيج.</p><div class="ib w"><div class="bt"><i class="fas fa-exclamation-triangle"></i> مشكلة</div>تكلفة الطباعة مرتفعة مقارنة بالأنواع الأخرى.</div><div class="fig">${SVG.inkjet_tech}<div class="fig-cap"><strong>أشكال 4 و 5</strong> - التقنيات الثلاث لضخ الحبر + خزان الحبر (Ink Cartridge)</div></div><div class="fig">${SVG.cartridge}<div class="fig-cap"><strong>شكل 5</strong> - خزان الحبر المدمج مع رأس الطباعة</div></div>`},
+
+{id:'a4',cat:'طابعات',icon:'fa-cogs',clr:'#0ea5e9',title:'مكونات ومراحل الطباعة النافثة',date:'الوحدة 1',read:'9 دقائق',exc:'المكونات العشرة والمراحل الثماني للطباعة من إرسال البيانات حتى خروج الورق.',
+body:`<h3>المكونات العشرة</h3><ol><li><strong>رأس الطباعة (Print Head):</strong> نفث الحبر.</li><li><strong>عبوة الحبر (Ink Cartridge):</strong> مدمجة مع الرأس غالباً.</li><li><strong>محرك رأس الطباعة (Stepper Motor):</strong> يحرك الرأس.</li><li><strong>الحزام (Belt):</strong> يربط الرأس بالمحرك.</li><li><strong>حامل الورق (Paper Tray):</strong> يزوّد بالورق.</li><li><strong>بكرات السحب:</strong> تسحب وتحرك الورق.</li><li><strong>محرك البكرات:</strong> محرك خطوي.</li><li><strong>مصدر التغذية (Power Supply):</strong> إمداد الطاقة.</li><li><strong>اللوحة الرئيسية (Main Board):</strong> التحكم والمعالجة.</li><li><strong>المنافذ:</strong> USB و RJ45.</li></ol><h3>مراحل الطباعة</h3><ol><li>البرنامج يرسل البيانات للتعريف (Driver).</li><li>التعريف يترجم ويتحقق من التوصيل.</li><li>المعلومات ترسل عبر المنفذ.</li><li>الطابعة تخزنها في RAM خاصة.</li><li>إن لم تعمل لفترة: تنظيف تلقائي.</li><li>تفعيل محرك العجلات مع حساس الورق.</li><li>معايرة الرأس ثم البدء.</li><li>خروج الورق وعودة الرأس.</li></ol>`},
+
+{id:'a5',cat:'طابعات',icon:'fa-exchange-alt',clr:'#0ea5e9',title:'فك وتركيب الحاويات وعبوات الحبر',date:'الوحدة 1',read:'6 دقائق',exc:'خطوات فك وتركيب حاويات الحبر النافثة وعبوة الحبر الليزرية (Toner).',
+body:`<h3>حاويات الحبر النافثة</h3><ol><li>نزع اللاصق → وصّل الطابعة → شغّل لإحضار الحامل → افصل التيار.</li><li>ارفع الغطاء → ارفع رافعة الإقفال → اسحب الفارغة.</li><li>أنظف الحاملة خاصة رأس الطباعة → ركّب الجديدة.</li><li>أغلق → شغّل → ستخرج نسخة تجربة.</li></ol><h3>عبوة الحبر الليزرية (Toner)</h3><ol><li>اضغط زر فتح الباب → افتحه → اسحب العبوة القديمة.</li><li>أخرج الجديدة → رجّها 5-6 مرات.</li><li>محاذاة مع المسارات → ثبتها → أغلق الباب.</li></ol>`},
+
+{id:'a6',cat:'طابعات',icon:'fa-bolt',clr:'#0ea5e9',title:'الطابعة الليزرية - المكونات والمراحل',date:'الوحدة 1',read:'14 دقائق',exc:'الأفضل على الإطلاق: المكونات الـ 12 ومراحل الطباعة الست.',
+body:`<p><strong style="color:var(--head)">الأفضل:</strong> جودة عالية، سرعة 20+ صفحة/دقيقة، دورة خدمة عشرات الآلاف شهرياً، هادئة، تكلفة صفحة منخفضة.</p><div class="fig">${SVG.lasercomp}<div class="fig-cap"><strong>أشكال 10-15</strong> - المكونات الرئيسية + مراحل الطباعة الست + مسار الورق</div></div><div class="ib d"><div class="bt"><i class="fas fa-exclamation-circle"></i> تحذير</div>وحدة التغذية الليزر توفر جهد مرتفع خطير!</div>`},
+
+{id:'a7',cat:'طابعات',icon:'fa-plug',clr:'#0ea5e9',title:'اتصال الطابعات وانحشار الورق',date:'الوحدة 1',read:'11 دقائق',exc:'طرق الاتصال ومعالجة انحشار الورق في جميع المواقع الستة.',
+body:`<div class="fig">${SVG.connectors}<div class="fig-cap"><strong>أشكال 16-17</strong> - طرق توصيل الطابعات: DB-25 متوازي و USB تسلسلي</div></div><div class="fig">${SVG.paperjam}<div class="fig-cap"><strong>شكل 28</strong> - الأماكن الستة المحتملة لانحشار الورق في HP 402 DN</div></div><h3>إزالة انحشار الدرج 1</h3><ol><li>اسحب الورق ببطء.</li><li>أخرج الدرج → أزل التالف.</li><li>تحقق من توجيه الورق.</li><li>ضع الورق مسطحاً.</li><li>أعد الدرج → افتح الباب → أخرج الحبر → أزل الورق بحرص.</li></ol><h3>عدم التقاط الورق</h3><ol><li>أزل ورق ممزق.</li><li>أعد ترتيب الورق.</li><li>حمّل بالمقاس الصحيح.</li><li>تأكد من إعدادات المقاس.</li><li>امسح الأسطوانات بقماش مبلل بماء مقطر.</li></ol>`},
+
+{id:'a8',cat:'طابعات',icon:'fa-bug',clr:'#0ea5e9',title:'المشاكل الشائعة والصيانة الدورية',date:'الوحدة 1',read:'15 دقائق',exc:'جميع المشاكل في النقطية والنافثة والليزرية مع الحلول والصيانة الدورية الكاملة.',
+body:`<div class="fig">${SVG.boards}<div class="fig-cap"><strong>أشكال 44-45</strong> - اللوحة الرئيسية (Main Board) ووحدة التغذية (Power Supply)</div></div><h3>مشاكل النقطية</h3><table class="stb"><thead><tr><th>المشكلة</th><th>الحل</th></tr></thead><tbody><tr><td>خطوط بيضاء</td><td>نظّف الرأس بالكحول أو استبدله</td></tr><tr><td>نص مقطوع</td><td>تعديل رأس الطباعة</td></tr><tr><td>صورة فاتحة من طرف</td><td>تعديل صفيحة استناد الورق</td></tr><tr><td>لا تعمل</td><td>افحص الكهرباء والفيوز</td></tr><tr><td>الرأس يتحرك ولا يطبع</td><td>شريط غير مثبت أو خالٍ من الحبر</td></tr></tbody></table><h3>مشاكل النافثة</h3><table class="stb"><thead><tr><th>المشكلة</th><th>الحل</th></tr></thead><tbody><tr><td>لا تباشر العمل</td><td>تأكد من تثبيت الحاوية والكابل</td></tr><tr><td>ورقة بيضاء</td><td>حبر فاسد أو عدم تطابق - أعِد التعريف</td></tr><tr><td>خطوط بيضاء</td><td>حبر جاف سدّ الثقوب - نظّف الرأس</td></tr><tr><td>"خطأ في الاتصال"</td><td>عطل كابل أو عدم تطابق العلة</td></tr><tr><td>الورق لا يتقدم</td><td>ازدحام - اسحبه وأعد التشغيل</td></tr></tbody></table><h3>مشاكل الليزرية</h3><table class="stb"><thead><tr><th>المشكلة</th><th>الحل</th></tr></thead><tbody><tr><td>طيف صفحة سابقة</td><td>مصباح المحو</td></tr><tr><td>نقاط سوداء ثابتة</td><td>سكين مطاطية غير مناسب</td></tr><tr><td>علامات بنفس الموضع</td><td>أسطوانة تالفة</td></tr><tr><td>طباعة خفيفة</td><td>حبر غير كافٍ</td></tr><tr><td>حبر غير ملتصق</td><td>مشكلة في Fuser</td></tr><tr><td>أوراق ملتصقة</td><td>مزيل الشحنة الساكنة</td></tr></tbody></table><h3>الصيانة الدورية</h3><ol><li><strong>رأس الطباعة:</strong> قطن + كحول (يمنع غشاء عازل).</li><li><strong>وحدة التظهير:</strong> هزّ يميناً ويساراً.</li><li><strong>مسارات العربة:</strong> قماش + بخاخ + زيت خاص.</li><li><strong>بكرات السحب:</strong> قماش فقط (المطاط يصبح ناعماً).</li><li><strong>وحدة التثبيت:</strong> 150-200° - محلول خاص + قفازات + تحت 40°.</li></ol>`},
+
+{id:'a9',cat:'محمول',icon:'fa-laptop',clr:'#f59e0b',title:'الأجهزة المحمولة - الميزات والمقارنة',date:'الوحدة 2',read:'8 دقائق',exc:'ميزات المحمول ومقارنة شاملة مع المكتبي.',
+body:`<div class="fig">${SVG.laptop}<div class="fig-cap"><strong>أشكال 47-51</strong> - الحاسب المحمول من جميع الجهات مع المنافذ الخارجية</div></div><div class="cg"><div class="cc"><h5><i class="fas fa-laptop"></i> المحمول</h5><ul class="cl"><li>صغير وقابل للتنقل</li><li>أغلى سعراً</li><li>قطع متخصصة ملكية</li><li>عمر 3-4 سنوات</li><li>التطوير صعب (الرام فقط)</li><li>الصيانة أصعب وأغلى</li></ul></div><div class="cc"><h5><i class="fas fa-desktop"></i> المكتبي</h5><ul class="cl"><li>كبير وثابت</li><li>أرخص</li><li>قطع قياسية متعددة المصادر</li><li>عمر 5-6 سنوات</li><li>كل قطعة قابلة للتطوير</li><li>الصيانة أسهل وأوفر</li></ul></div></div>`},
+
+{id:'a10',cat:'محمول',icon:'fa-wrench',clr:'#f59e0b',title:'تفكيك المحمول واستبدال الرام والشاشة',date:'الوحدة 2',read:'10 دقائق',exc:'خطوات التفكيك الكاملة واستبدال RAM واستبدال شاشة LCD.',
+body:`<h3>خطوات التفكيك</h3><ol><li>فصل التيار وإزالة البطارية.</li><li>إزالة الأغطية والبراغي (وثّق موقع كل برغي!).</li><li>فصل الكابلات بحذر.</li><li>إزالة: RAM ← قرص ← محرك أقراص ← لوحة مفاتيح...</li></ol><h3>استبدال RAM</h3><ol><li>افصل التيار وأزل البطارية.</li><li>افتح غطاء الذاكرة.</li><li>افكّ مشابك التثبيت.</li><li>اسحب الشريحة بزاوية 30°.</li><li>ركّب الجديدة بزاوية 30° → اضغط.</li></ol><div class="ib t"><div class="bt"><i class="fas fa-lightbulb"></i> نصيحة</div>تأكد من نوع الرام المتوافق (DDR2/DDR3/DDR4) قبل الشراء.</div><h3>استبدال شاشة LCD</h3><ol><li>افصل التيار وأزل البطارية.</li><li>أزل إطار الشاشة (Bezel).</li><li>افصل كابل الشاشة.</li><li>أزل التالفة ← ركّب الجديدة.</li></ol><div class="ib d"><div class="bt"><i class="fas fa-exclamation-circle"></i> تحذير</div>كابل الشاشة رقيق وحساس. الشاشة تتكسر بسهولة.</div>`},
+
+{id:'a11',cat:'محمول',icon:'fa-spray-can',clr:'#f59e0b',title:'تنظيف المحمول والمشاكل الشائعة',date:'الوحدة 2',read:'8 دقائق',exc:'إجراءات تنظيف جميع الأجزاء والمشاكل الشائعة وحلولها.',
+body:`<h3>إجراءات التنظيف</h3><ul><li><strong>لوحة المفاتيح:</strong> هواء مضغوط + قماش مبلل بمحلول خفيف.</li><li><strong>التهوية:</strong> هواء مضغوط لفتحات التهوية.</li><li><strong>شاشة LCD:</strong> قماش microfiber + محلول شاشات فقط.</li><li><strong>لوحة اللمس:</strong> قماش ناعم مبلل قليلاً.</li><li><strong>محرك الأقراص:</strong> قرص تنظيف خاص.</li></ul><h3>المشاكل الشائعة</h3><ul><li><strong>ارتفاع الحرارة:</strong> انسداد تهوية / تلف مروحة → نظّف أو غيّر المروحة أو المعجون.</li><li><strong>مشاكل الشاشة:</strong> كابل أو شاشة أو لوحة أم.</li><li><strong>البطارية:</strong> استبدال أو فحص المحول.</li><li><strong>لا يشغّل:</strong> تيار ← بطارية ← رام ← معالج.</li></ul>`},
+
+{id:'a12',cat:'دعم فني',icon:'fa-headset',clr:'#8b5cf6',title:'الدعم الفني ومكتبه',date:'الوحدة 3',read:'6 دقائق',exc:'مفهوم الدعم الفني ومستوياته الثلاثة ومهام مكتب الدعم.',
+body:`<h3>المستويات الثلاثة</h3><ul><li><strong>الأول:</strong> استقبال وتسجيل البلاغات + حل البسيط.</li><li><strong>الثاني:</strong> متخصصون للمشاكل المعقدة.</li><li><strong>الثالث:</strong> خبراء للمعقدة جداً وعيوب التصميم.</li></ul><h3>مهام مكتب الدعم</h3><ul><li>استقبال وتسجيل البلاغات</li><li>تصنيف الأولويات (عاجل/متوسط/عادي)</li><li>توزيع على الفنيين</li><li>متابعة حتى الإغلاق</li><li>تقارير دورية</li><li>قاعدة معرفية</li></ul><h3>الأدوات</h3><ul><li>Ticketing System</li><li>Knowledge Base</li><li>Remote Desktop</li><li>نظام هاتف</li><li>برامج مراقبة</li></ul>`},
+
+{id:'a13',cat:'تقارير',icon:'fa-file-alt',clr:'#ec4899',title:'التقارير الفنية',date:'الوحدة 4',read:'7 دقائق',exc:'التعريف والأنواع الخمسة والعناصر التسعة مع نموذج عملي.',
+body:`<h3>الأنواع</h3><ul><li><strong>تشخيص عطل</strong></li><li><strong>صيانة دورية</strong></li><li><strong>تركيب وتشغيل</strong></li><li><strong>تقييم</strong></li><li><strong>حادثة</strong></li></ul><h3>العناصر التسعة</h3><ol><li>رقم التقرير وتاريخه</li><li>بيانات المُعد</li><li>بيانات الجهاز</li><li>وصف المشكلة</li><li>التشخيص</li><li>الإجراءات</li><li>النتيجة</li><li>التوصيات</li><li>التوقيع</li></ol><div class="ib i"><div class="bt"><i class="fas fa-info-circle"></i> نموذج</div><table class="stb"><tbody><tr><td style="color:var(--acc);font-weight:700;width:30%">الجهاز</td><td>HP LaserJet 402 DN</td></tr><tr><td style="color:var(--acc);font-weight:700">المشكلة</td><td>انحشار ورق متكرر</td></tr><tr><td style="color:var(--acc);font-weight:700">التشخيص</td><td>تلف بكرات السحب</td></tr><tr><td style="color:var(--acc);font-weight:700">النتيجة</td><td>تم الحل</td></tr><tr><td style="color:var(--acc);font-weight:700">التوصيات</td><td>صيانة كل 3 أشهر</td></tr></tbody></table></div>`},
+
+{id:'a14',cat:'مقايسات',icon:'fa-calculator',clr:'#14b8a6',title:'المقايسات والتكاليف الفنية',date:'الوحدة 5',read:'7 دقائق',exc:'إعداد المقايسات الفنية مع نموذج عملي.',
+body:`<h3>خطوات الإعداد</h3><ol><li>تحديد نطاق العمل</li><li>تحديد المواصفات الفنية</li><li>تحديد الكميات</li><li>الجدول الزمني</li><li>شروط الضمان</li><li>أسلوب الدفع</li><li>جدول الأسعار</li><li>الشروط العامة</li></ol><div class="ib i"><div class="bt"><i class="fas fa-file-invoice"></i> نموذج</div><table class="stb"><thead><tr><th>البند</th><th>الوصف</th><th>الكمية</th><th>الإجمالي</th></tr></thead><tbody><tr><td>1</td><td>صيانة دورية ليزرية</td><td>10</td><td>500</td></tr><tr><td>2</td><td>تغيير Toner</td><td>10</td><td>2,000</td></tr><tr><td>3</td><td>تغيير بكرة سحب</td><td>3</td><td>240</td></tr><tr><td>4</td><td>تنظيف وتشحيم</td><td>10</td><td>300</td></tr><tr><td>5</td><td>إصلاح انحشار</td><td>2</td><td>200</td></tr><tr style="border-top:2px solid var(--accbd)"><td colspan="3" style="font-weight:700;color:var(--acc);text-align:left">الإجمالي</td><td style="font-weight:700;color:var(--acc)">3,240</td></tr></tbody></table></div>`},
+
+{id:'a15',cat:'شبكات',icon:'fa-network-wired',clr:'#06b6d4',title:'تصميم الشبكات',date:'الوحدة 6',read:'9 دقائق',exc:'العوامل التسعة ومثال عملي لتصميم شبكة مكتب.',
+body:`<h3>العوامل التسعة</h3><ol><li>عدد المستخدمين</li><li>نوع الاستخدام</li><li>المساحة والموقع</li><li>السرعة المطلوبة</li><li>نوع التوصيل</li><li>الأمان</li><li>الميزانية</li><li>قابلية التوسع</li><li>متطلبات الخوادم</li></ol><h3>مثال: مكتب 20 جهاز</h3><table class="stb"><thead><tr><th>الجهاز</th><th>العدد</th></tr></thead><tbody><tr><td>سويتش 24 منفذ</td><td>1</td></tr><tr><td>راوتر</td><td>1</td></tr><tr><td>نقطة وصول Wi-Fi</td><td>2</td></tr><tr><td>خادم ملفات</td><td>1</td></tr><tr><td>طابعة شبكية</td><td>3</td></tr><tr><td>كابل Cat6</td><td>حسب المسافات</td></tr><tr><td>خزانة Rack + UPS</td><td>3</td></tr></tbody></table>`},
+
+{id:'a16',cat:'أدوات',icon:'fa-tools',clr:'#f97316',title:'أدوات الصيانة والتنظيف',date:'الملحق',read:'6 دقائق',exc:'جميع الأدوات المطلوبة للتفكيك والتنظيف والفحص.',
+body:`<h3>أدوات التفكيك</h3><ul><li>مفاتيح: Philips / Flat / Torx</li><li>مفكات دقيقة للمحمول</li><li>أدوات بلاستيكية (Spudger)</li><li>ملقط</li></ul><h3>أدوات التنظيف</h3><ul><li>هواء مضغوط</li><li>مكنسة شفاط (Vacuum)</li><li>قطن + كحول إيزوبروبيل</li><li>قماش Microfiber</li><li>فرشاة ناعمة</li></ul><h3>أدوات القياس</h3><ul><li>ملتى ميتر (Multimeter)</li><li>اختبار كابلات (Cable Tester)</li></ul><div class="ib w"><div class="bt"><i class="fas fa-exclamation-triangle"></i> مكنسة الشفاط</div>لا تلامس المكونات مباشرة. لا تستخدم على رأس الطباعة النافثة. افصل التيار دائماً.</div>`}
+];
+
+// ═══════════════════════════════════════════════
+//  بنك الأسئلة (65 سؤال)
+//  ← لإضافة أسئلة من امتحانات جديدة أضف هنا:
+//  {q:"نص", o:["أ","ب","ج","د"], c:0, e:"شرح"}
+//  c = رقم الإجابة الصحيحة (0=أولى)
+// ═══════════════════════════════════════════════
+const QB={'طابعات':[
+{q:"ما وحدة قياس دقة الطباعة؟",o:["PPM","DPI","Hz","MB"],c:1,e:"DPI = Dots Per Inch"},
+{q:"ماذا يعني PPM؟",o:["بوصة مربعة","نقاط لكل بوصة","صفحة في الدقيقة","بايت بالثانية"],c:2,e:"PPM = Page Per Minute"},
+{q:"أي نوع ضارب (Impact)؟",o:["الليزرية","النافثة","النقطية","الحرارية"],c:2,e:"النقطية يضرب رأسها الورقة فعلياً"},
+{q:"كم دبوس في رأس النقطية؟",o:["3 أو 6","9 أو 18 أو 24","50","200"],c:1,e:"كلما زاد العدد زادت الدقة"},
+{q:"من طوّرت تقنية البيزو؟",o:["HP","Canon","Epson","Brother"],c:2,e:"Epson طوّرت Piezoelectric"},
+{q:"كم مرحلة في الطباعة الليزرية؟",o:["3","4","6","8"],c:2,e:"ست مراحل"},
+{q:"وظيفة مصباح المحو؟",o:["تسخين الحبر","مسح شحنات الأسطوانة","سحب الورق","شحن سالب"],c:1,e:"يعريض الأسطوانة للضوء لمسح الشحنات"},
+{q:"وظيفة Fuser؟",o:["شحن الأسطوانة","رسم بالليزر","دمج الحبر بالحرارة","تنظيف"],c:2,e:"ضغط + تسخين → الحبر يلتحم بالورق"},
+{q:"أي ليس منفذ طابعات؟",o:["USB","DB-25","HDMI","RJ45"],c:2,e:"HDMI منفذ فيديو وليس للطابعات"},
+{q:"أول خطوة فحص الدوائر؟",o:["فحص الفيوز","فحص البريزة","فحص كابل البيانات","فتح الأغطية"],c:1,e:"فحص مأخذ الكهرباء بالملتى ميتر أولاً"},
+{q:"سبب خط أبيض سميك في الليزرية؟",o:["عطل الليزر","نهاية التونة","تلف الأسطوانة","عطل الفيوز"],c:1,e:"نهاية استهلاك الحبر - رجّها أو غيّرها"},
+{q:"ترك النافثة بدون عمل يسبب؟",o:["لا شيء","غشاء عازل","تلف المحرك","انتفاخ الحبر"],c:1,e:"غشاء عازل يمنع نفث الحبر"},
+{q:"أي تقنية تستخدم كريستال يتمدد؟",o:["الحرارية","البيزو","الجريان المستمر","الهيدروليكي"],c:1,e:"البيزو - كريستال يتمدد بتيار كهربائي"},
+{q:"دورة الخدمة تقاس بـ؟",o:["عدد النسخ","صفحات في الشهر","سنوات العمل","عدد الألوان"],c:1,e:"عدد الصفحات في شهر واحد"},
+{q:"وظيفة مرشح الأوزون؟",o:["تنقية الحبر","إزالة غاز الأوزون","تبريد","تنظيف الورق"],c:1,e:"الهالات تنتج أوزون ضار - يستبدل دورياً"},
+{q:"شحنة الهالة الرئيسية تتراوح؟",o:["10-50 فولت","100-200","500-1000 فولت","5000-10000"],c:2,e:"تشحن الأسطوانة سالباً بـ 500-1000 فولت"},
+{q:"ما يشحنه سلك الهالة الرئيسية؟",o:["الورقة","الحبر","الأسطوانة","المحرك"],c:2,e:"يشحن الأسطوانة (Drum) سالباً"},
+{q:"انحشار في حاوية الإخراج أولاً؟",o:["افتح الباب الأمامي","اسحب الظاهر من الأمام","أزل الحبر","افصل الكهرباء"],c:1,e:"إن ظهر من الأمام اسحبه أولاً"},
+{q:"عدم التقاط الورق تفحص أولاً؟",o:["الفيوز","ورق ممزق","اللوحة الرئيسية","التعريف"],c:1,e:"تأكد من عدم وجود ورق ممزق"},
+{q:"نقاط سوداء ثابتة في الليزرية؟",o:["تلف الليزر","السكين المطاطية","نهاية الحبر","تلف الفيوز"],c:1,e:"السكين المطاطية غير مناسبة"},
+{q:"طيف صفحة سابقة سببه؟",o:["تلف الأسطوانة","مصباح المحو","نهاية الحبر","تلف السخان"],c:1,e:"مصباح المحو"},
+{q:"رموز غير مفهومة سببها؟",o:["ورق رديء","تعريف غير مطابق","انحشار","سخونة"],c:1,e:"تعريف غير مطابق أو تالف"},
+{q:"تلف السخان غالباً بسبب؟",o:["الاستخدام العادي","القوة عند إخراج ورق محشور","عدم الاستخدام","الرطوبة"],c:1,e:"استخدام القوة لإخراج الأوراق المحشورة"},
+{q:"الطابعة متصلة ولا تعمل أولاً؟",o:["التعريف","كابل التيار","نوع الورق","الرام"],c:1,e:"تأكد من كابل التيار"},
+{q:"أي جزء يحتاج محلول خاص وقفازات؟",o:["رأس النافثة","الفيزر","اللوحة الرئيسية","البكرات"],c:1,e:"الفيزر حرارته 150-200°"},
+{q:"مكونات اللوحة الرئيسية تشمل؟",o:["المعالج فقط","المعالج وROM وRAM","المحرك فقط","البكرات فقط"],c:1,e:"المعالج + ROM + RAM + مقابس إضافية"},
+{q:"فيض الذاكرة يحدث عندما؟",o:["RAM زائدة","RAM غير كافية","RAM تالفة","لا علاقة"],c:1,e:"عندما لا تكفي RAM لتخزين الصورة قبل الطباعة"},
+],"محمول":[
+{q:"أي ميزة من ميزات المحمول؟",o:["حجم كبير","شاشة مدمجة في الغطاء","لا يعمل ببطارية","لا يدعم طرفيات"],c:1,e:"الشاشة مدمجة في الغطاء"},
+{q:"الجزء الأسهل للتطوير؟",o:["المعالج","الشاشة","RAM","اللوحة الأم"],c:2,e:"الرام هي الوحيدة القابلة للتطوير بسهولة"},
+{q:"متوسط عمر المحمول حسب IDC؟",o:["سنة","سنتان","3-4 سنوات","10 سنوات"],c:2,e:"3-4 سنوات مقابل 5-6 للمكتبي"},
+{q:"ما هو Docking Station؟",o:["بطارية","توصيل طرفيات بمنفذ واحد","شاشة خارجية","لوحة مفاتيح"],c:1,e:"توصيل عدة طرفيات بمنفذ واحد"},
+{q:"أول خطوة قبل التفكيك؟",o:["إزالة القرص","فصل التيار والبطارية","فتح الشاشة","إزالة المفاتيح"],c:1,e:"فصل التيار والبطارية دائماً"},
+{q:"أي جهاز أكثر قابلية للتطوير؟",o:["المحمول","المكتبي","الهاتف","PDA"],c:1,e:"المكتبي كل قطعة قابلة للتغيير"},
+{q:"لماذا لا تستخدم قطع محمول مختلفة؟",o:["أكبر","ملكية خاصة","أرخص","لا سبب"],c:1,e:"مكونات Proprietary وليست قياسية"},
+{q:"تنظيف شاشة LCD به؟",o:["مناديل ورقية","كحول قوي","microfiber + محلول شاشات","ماء ساخن"],c:2,e:"microfiber مع محلول شاشات فقط"},
+{q:"ماذا يعني Hot Swap؟",o:["تبديل سريع","تبديل أثناء التشغيل","إعادة تشغيل","تحديث"],c:1,e:"تبديل الطرفيات أثناء التشغيل دون إيقاف"},
+{q:"ارتفاع حرارة المحمول أولاً؟",o:["تغيير المعالج","تنظيف التهوية","تغيير الشاشة","إضافة رام"],c:1,e:"انسداد التهوية سبب رئيسي"},
+],"دعم فني":[
+{q:"الهدف الرئيسي للدعم الفني؟",o:["بيع الأجهزة","حل المشاكل التقنية","تصنيع","تطوير برمجيات"],c:1,e:"ضمان استمرارية العمل"},
+{q:"المستوى الأول؟",o:["الخبراء","المتخصصون","استقبال وحل البسيط","الإدارة"],c:2,e:"استقبال وتسجيل وحل البسيط"},
+{q:"من أدوات مكتب الدعم؟",o:["Ticketing System","آلة لحام","مفك","ميزان"],c:0,e:"نظام التذاكر أداة أساسية"},
+{q:"أول خطوة عند استلام بلاغ؟",o:["إرسال فني","تسجيل وتصنيف","إغلاق البلاغ","شراء قطع"],c:1,e:"التسجيل والتصنيف أولاً"},
+{q:"أولوية 'عاجل' تعني؟",o:["يمكن تأجيله","حل فوري","بلاغ وهمي","مكرر"],c:1,e:"توقف حرج يحتاج تدخل فوري"},
+],"تقارير":[
+{q:"ما هو التقرير الفني؟",o:["وثيقة تسويق","وثيقة تقنية عن مشكلة","رسالة","قائمة أسعار"],c:1,e:"وثيقة: تشخيص + إجراءات + نتائج + توصيات"},
+{q:"ما ليس من عناصر التقرير؟",o:["رقم وتاريخ","المشكلة والتشخيص","السعر التنافسي","التوصيات"],c:2,e:"السعر التنافسي ليس عنصراً"},
+{q:"الهدف من التقارير؟",o:["ترويج","توثيق وتسهيل قرارات","إظهار كتابة","ملء وقت"],c:1,e:"توثيق وتسهيل اتخاذ القرارات"},
+{q:"تقرير تشخيص عطل يوضح؟",o:["طبيعة العطل","الأسعار","الموظفين","المالية"],c:0,e:"طبيعة العطل والأسباب والإجراءات"},
+{q:"لماذا الرقم التسلسلي مهم؟",o:["للزينة","تحديد الجهاز فريداً","لا أهمية","للبيع"],c:1,e:"يحدد الجهاز فريداً ويساعد في التتبع"},
+],"مقايسات":[
+{q:"ما هي المقايسة الفنية؟",o:["قائمة أسعار","وثيقة مواصفات وتكاليف","عقد","فاتورة"],c:1,e:"وثيقة تفصيلية كأساس للتعاقد"},
+{q:"أول خطوة في المقايسة؟",o:["تحديد السعر","تحديد نطاق العمل","توقيع العقد","التنفيذ"],c:1,e:"معرفة العمل المطلوب أولاً"},
+{q:"لماذا المقايسات مهمة؟",o:["للزينة","شفافية وضبط تكاليف","إضاعة وقت","لا أهمية"],c:1,e:"ضمان الشفافية وضبط التكاليف"},
+{q:"ما يجب أن يتضمنه جدول الأسعار؟",o:["الاسم فقط","البند والوصف والكمية والإجمالي","العنوان","الهاتف"],c:1,e:"تفصيل كل بند"},
+{q:"الفرق بين المقايسة والتقرير؟",o:["لا فرق","المقايسة قبل العمل والتقرير بعده","العكس","نفس الغرض"],c:1,e:"المقايسة قبل العمل، التقرير بعده"},
+],"شبكات":[
+{q:"ما معنى تصميم شبكة؟",o:["سحب كابلات","تخطيط كامل","شراء أجهزة","لا معنى"],c:1,e:"تخطيط كامل للأجهزة والمكونات"},
+{q:"كم عامل أساسي في التصميم؟",o:["3","5","7","9"],c:3,e:"9 عوامل"},
+{q:"أكثر Topology استخداماً؟",o:["Ring","Bus","Star","Mesh"],c:2,e:"النجمة - كل جهاز متصل بسويتش"},
+{q:"مكتب 20 جهاز كم سويتش؟",o:["2","1","3","5"],c:1,e:"سويتش 24 منفذ يكفي"},
+{q:"فائدة UPS؟",o:["تجميل","حماية من انقطاع الكهرباء","تسريع الإنترنت","لا فائدة"],c:1,e:"مزود طاقة غير منقطع"},
+],"أدوات":[
+{q:"أي أداة لقياس الجهد؟",o:["مفك","ملتى ميتر","مكنسة","كماشة"],c:1,e:"Multimeter يقيس الجهد والتيار والمقاومة"},
+{q:"المحلول لتنظيف التلامسات؟",o:["ماء","كحول إيزوبروبيل","منظف أطباق","بنزين"],c:1,e:"كحول إيزوبروبيل يتبخر سريعاً"},
+{q:"ما هي Spudger؟",o:["مفك كبير","أداة بلاستيكية لفتح الأغطية","مكنسة","ملتقط"],c:1,e:"أداة بلاستيكية تفتح دون خدش"},
+{q:"قبل المكنسة الشفاط يجب؟",o:["شغّل الجهاز","افصل التيار","رش ماء","لا شيء"],c:1,e:"افصل التيار دائماً"},
+{q:"المعجون الحراري يوضع بين؟",o:["الشاشة والغطاء","المعالج والمشتت","الرام واللوحة","القرص والكابل"],c:1,e:"المعالج والمشتت لنقل الحرارة"},
+]};
+
+const qCats=[{name:'طابعات',icon:'fa-print',clr:'#0ea5e9'},{name:'محمول',icon:'fa-laptop',clr:'#f59e0b'},{name:'دعم فني',icon:'fa-headset',clr:'#8b5cf6'},{name:'تقارير',icon:'fa-file-alt',clr:'#ec4899'},{name:'مقايسات',icon:'fa-calculator',clr:'#14b8a6'},{name:'شبكات',icon:'fa-network-wired',clr:'#06b6d4'},{name:'أدوات',icon:'fa-tools',clr:'#f97316'}];
+const catColors={};articles.forEach(a=>{catColors[a.cat]=a.clr});
+let page='home',doneQ={},qIdx=0,qScore=0,qCurCat='',qCurQs=[];
+
+function go(p,id){page=p;document.querySelectorAll('.hnav a').forEach(a=>a.classList.remove('act'));document.getElementById('nav-'+(p==='home'?'home':'quiz')).classList.add('act');document.getElementById('hnav').classList.remove('show');window.scrollTo({top:0});if(p==='home')renderHome();else if(p==='article')renderArticle(id);else if(p==='quiz')renderQuiz();}
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('rbar').style.width=(h>0?(window.scrollY/h)*100:0)+'%';});
+
+function renderHome(){const cats=[...new Set(articles.map(a=>a.cat))];let h=`<div class="hero fade"><h1>مدونة <span>صيانة اللابتوب والطابعات</span> والمقايسات الفنية</h1><p>شروحات مبسطة مع رسوم تقنية تفاعلية واختبارات شاملة - مستوحاة من كتاب الصف الثالث</p><div class="hero-stats"><div class="hero-stat"><div class="n">${articles.length}</div><div class="l">مقال تعليمي</div></div><div class="hero-stat"><div class="n">${Object.values(QB).flat().length}</div><div class="l">سؤال اختبار</div></div><div class="hero-stat"><div class="n">${qCats.length}</div><div class="l">تصنيف</div></div></div></div><div class="cats fade"><div class="cats-h">تصفية حسب التصنيف</div><div class="cats-row"><button class="cat-btn act" onclick="filterCat('all',this)">الكل</button>`;cats.forEach(c=>{h+=`<button class="cat-btn" onclick="filterCat('${c}',this)">${c}</button>`;});h+=`</div></div><div class="grid" id="agrid">`;articles.forEach((a,i)=>{h+=`<div class="acard fade" data-cat="${a.cat}" onclick="go('article','${a.id}')" style="animation-delay:${i*30}ms"><div class="acard-img" style="background:linear-gradient(135deg,${a.clr}15,${a.clr}05)"><i class="fas ${a.icon}" style="color:${a.clr};position:relative;z-index:1"></i></div><div class="acard-body"><div class="acard-cat">${a.cat}</div><div class="acard-title">${a.title}</div><div class="acard-excerpt">${a.exc}</div><div class="acard-meta"><span><i class="far fa-clock"></i>${a.read}</span><span><i class="far fa-folder"></i>${a.date}</span></div></div></div>`;});h+=`</div>`;document.getElementById('app').innerHTML=h;}
+function filterCat(c,btn){document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('act'));btn.classList.add('act');document.querySelectorAll('.acard').forEach(c2=>{c2.style.display=(c==='all'||c2.dataset.cat===c)?'':'none';});}
+
+function renderArticle(id){const a=articles.find(x=>x.id===id);if(!a)return go('home');const idx=articles.indexOf(a),prev=idx>0?articles[idx-1]:null,next=idx<articles.length-1?articles[idx+1]:null;let h=`<div class="art-wrap fade"><button class="art-back" onclick="go('home')"><i class="fas fa-arrow-right"></i> العودة</button><div class="art-cat"><i class="fas ${a.icon}"></i> ${a.cat}</div><div class="art-title">${a.title}</div><div class="art-meta"><span><i class="far fa-clock"></i>${a.read}</span><span><i class="far fa-folder"></i>${a.date}</span></div><div class="art-body">${a.body}</div><div class="art-nav">`;if(prev)h+=`<div class="art-nav-btn" onclick="go('article','${prev.id}')"><div class="lbl">← السابق</div><div class="val">${prev.title}</div></div>`;else h+=`<div></div>`;if(next)h+=`<div class="art-nav-btn" onclick="go('article','${next.id}')"><div class="lbl">التالي →</div><div class="val">${next.title}</div></div>`;h+=`</div></div>`;document.getElementById('app').innerHTML=h;}
+
+function renderQuiz(){let t=Object.values(QB).flat().length;let h=`<div class="quiz-wrap fade"><div class="quiz-header"><h2>الاختبارات التفاعلية</h2><p>${t} سؤال على ${qCats.length} تصنيفات</p></div><button class="qall-btn" onclick="startQuiz('all')"><i class="fas fa-play"></i> اختبار شامل - جميع الأسئلة</button><div class="quiz-cats">`;qCats.forEach(c=>{const qs=QB[c.name]||[];const dn=doneQ[c.name];h+=`<div class="qcat-card ${dn?'done':''}" onclick="startQuiz('${c.name}')"><div class="qi"><i class="fas ${c.icon}"></i></div><div class="qt">${c.name}</div><div class="qn">${qs.length} سؤال ${dn?'<i class="fas fa-check-circle" style="color:var(--ok);margin-right:4px"></i>':''}</div></div>`;});h+=`</div></div>`;document.getElementById('app').innerHTML=h;}
+
+function startQuiz(cat){qCurCat=cat;qCurQs=cat==='all'?Object.values(QB).flat():[...(QB[cat]||[])];qCurQs=[...qCurQs].sort(()=>Math.random()-.5);qIdx=0;qScore=0;document.getElementById('qTi').textContent=cat==='all'?'اختبار شامل':'اختبار: '+cat;renderQ();document.getElementById('qov').classList.add('show');}
+function clQ(){document.getElementById('qov').classList.remove('show');}
+function renderQ(){const q=qCurQs[qIdx],bd=document.getElementById('qBd'),pct=Math.round((qIdx/qCurQs.length)*100),L=['أ','ب','ج','د'];let h=`<div class="qpb"><span style="width:${pct}%"></span></div><div class="qn2">السؤال ${qIdx+1} من ${qCurQs.length}</div><div class="qt2">${q.q}</div><div class="qos">`;q.o.forEach((o,i)=>{h+=`<div class="qo" onclick="selA(${i})" id="opt-${i}"><div class="oc">${L[i]}</div><span>${o}</span></div>`;});h+=`</div><div class="qfb" id="qfb"></div><button class="qnb" id="qnb" onclick="nextQ()">السؤال التالي <i class="fas fa-arrow-left"></i></button>`;bd.innerHTML=h;}
+function selA(i){const q=qCurQs[qIdx];if(document.querySelector('.qo.ok')||document.querySelector('.qo.no'))return;const ok=i===q.c;if(ok)qScore++;document.getElementById('opt-'+i).classList.add(ok?'ok':'no');if(!ok)document.getElementById('opt-'+q.c).classList.add('ok');const fb=document.getElementById('qfb');fb.className='qfb sh '+(ok?'cf':'wf');fb.innerHTML=(ok?'<i class="fas fa-check-circle"></i> إجابة صحيحة! ':'<i class="fas fa-times-circle"></i> إجابة خاطئة. ')+'<strong>الشرح:</strong> '+q.e;document.getElementById('qnb').style.display='inline-block';}
+function nextQ(){qIdx++;if(qIdx>=qCurQs.length){showResult();return;}renderQ();}
+function showResult(){const pct=Math.round((qScore/qCurQs.length)*100),pass=pct>=60;if(pass)doneQ[qCurCat]=true;const bd=document.getElementById('qBd');let h=`<div class="qr"><div class="ri ${pass?'p':'f'}"><i class="fas ${pass?'fa-trophy':'fa-redo'}"></i></div><h3>${pass?'ممتاز! نجحت':'تحتاج مراجعة'}</h3><div class="sc">حصلت على <span>${qScore}</span> من <span>${qCurQs.length}</span> (${pct}%)</div><div class="qrb"><button class="br" onclick="startQuiz('${qCurCat}')"><i class="fas fa-redo"></i> إعادة</button><button class="bc" onclick="clQ()"><i class="fas fa-times"></i> إغلاق</button></div></div>`;bd.innerHTML=h;toast(pass?'تم اجتياز الاختبار!':'تحتاج مراجعة',pass?'s':'e');}
+function toast(msg,type){const tc=document.getElementById('tc'),t=document.createElement('div');t.className='tst '+(type||'');t.textContent=msg;tc.appendChild(t);setTimeout(()=>t.remove(),2800);}
+renderHome();
+</script>
+</body>
+</html>
